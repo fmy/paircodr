@@ -71,7 +71,7 @@ class Editor
       .append("&nbsp;")
       .css
         position: "absolute"
-        top: data.cursor.top
+        top: data.cursor.top-4
         left: data.cursor.left
         height: 16
       $(".CodeMirror-secondarycursor").after cursor
@@ -113,13 +113,13 @@ class Editor
         .append("&nbsp;")
         .css
           "position": "absolute"
-          "top": data.cursor.top - 4
+          "top": data.cursor.top-4
           "left": data.cursor.left
           "height": 16
         $(".CodeMirror-secondarycursor").after cursor
       else
         $(".cursor-#{data.socket_id}").css
-          top: data.cursor.top
+          top: data.cursor.top-4
           left: data.cursor.left
 
 

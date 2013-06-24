@@ -90,7 +90,7 @@
         $.pnotify("" + data.user + " comes.");
         cursor = $("<div/>").addClass("CodeMirror-cursor cursor-" + data.socket_id).append("&nbsp;").css({
           position: "absolute",
-          top: data.cursor.top,
+          top: data.cursor.top - 4,
           left: data.cursor.left,
           height: 16
         });
@@ -141,7 +141,7 @@
           return $(".CodeMirror-secondarycursor").after(cursor);
         } else {
           return $(".cursor-" + data.socket_id).css({
-            top: data.cursor.top,
+            top: data.cursor.top - 4,
             left: data.cursor.left
           });
         }
