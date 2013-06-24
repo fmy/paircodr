@@ -63,8 +63,12 @@ class Editor
       @cm.setValue data
       @edit_flag = true
 
-    @socket.on 'user:loginned', (data) =>
-      $.pnotify "#{data.user} comes."
+    @socket.on 'user:enter', (data) =>
+      $.pnotify
+        title: false
+        text: "#{data.user} comes."
+        height: ""
+        delay: 1000
       cursor = $("<div/>")
       .addClass("CodeMirror-cursor cursor-#{data.socket_id}")
       .append("&nbsp;")
@@ -75,9 +79,17 @@ class Editor
         height: 16
       $(".CodeMirror-secondarycursor").after cursor
 
+    @socket.on "user:exit", ->
+      $.pnotify
+        title: false
+        text: "#{data.user} exits."
+        height: ""
+        delay: 1000
+      $("cursor-#{data.socket_id}").remove()
+
     @socket.on "code:saved", (data) =>
       $(".code_title").text data.title
-      $.pnotify 
+      $.pnotify
         title: false
         text: "Save."
         height: ""

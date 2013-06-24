@@ -84,9 +84,14 @@
         _this.cm.setValue(data);
         return _this.edit_flag = true;
       });
-      this.socket.on('user:loginned', function(data) {
+      this.socket.on('user:enter', function(data) {
         var cursor;
-        $.pnotify("" + data.user + " comes.");
+        $.pnotify({
+          title: false,
+          text: "" + data.user + " comes.",
+          height: "",
+          delay: 1000
+        });
         cursor = $("<div/>").addClass("CodeMirror-cursor cursor-" + data.socket_id).append("&nbsp;").css({
           position: "absolute",
           top: data.cursor.top - 4,
@@ -94,6 +99,15 @@
           height: 16
         });
         return $(".CodeMirror-secondarycursor").after(cursor);
+      });
+      this.socket.on("user:exit", function() {
+        $.pnotify({
+          title: false,
+          text: "" + data.user + " exits.",
+          height: "",
+          delay: 1000
+        });
+        return $("cursor-" + data.socket_id).remove();
       });
       this.socket.on("code:saved", function(data) {
         $(".code_title").text(data.title);

@@ -71,7 +71,7 @@ io.sockets.on('connection', function(socket) {
     socket.set("room", room);
     socket.set("user", data.user);
     data.socket_id = socket.id;
-    io.sockets["in"](room).emit("user:loginned", data);
+    io.sockets["in"](room).emit("user:enter", data);
     socket.join(room);
     if (counts[room]) {
       counts[room] = counts[room] + 1;
@@ -121,16 +121,23 @@ io.sockets.on('connection', function(socket) {
     });
   });
   return socket.on("disconnect", function() {
-    var room;
+    var room, user;
     room = "";
     socket.get("room", function(err, _room) {
       return room = _room;
+    });
+    user = "";
+    socket.get("user", function(err, _user) {
+      return user = _user;
     });
     counts[room] = counts[room] - 1;
     if (counts[room] < 1) {
       delete counts[room];
       delete bodies[room];
     }
-    return console.log(counts);
+    return socket.broadcast.to(room).emit("user:exit", {
+      socket_id: socket.id,
+      user: user
+    });
   });
 });
