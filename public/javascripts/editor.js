@@ -90,7 +90,7 @@
         $.pnotify("" + data.user + " comes.");
         cursor = $("<div/>").addClass("CodeMirror-cursor cursor-" + data.socket_id).append("&nbsp;").css({
           position: "absolute",
-          top: data.cursor.top - 4,
+          top: data.cursor.top,
           left: data.cursor.left,
           height: 16
         });
@@ -98,9 +98,6 @@
       });
       this.socket.on("code:saved", function(data) {
         $(".code_title").text(data.title);
-        _this.edit_flag = false;
-        _this.cm.setValue(data.body);
-        _this.edit_flag = true;
         return $.pnotify({
           title: false,
           text: "Save.",
@@ -144,7 +141,7 @@
           return $(".CodeMirror-secondarycursor").after(cursor);
         } else {
           return $(".cursor-" + data.socket_id).css({
-            top: data.cursor.top - 4,
+            top: data.cursor.top,
             left: data.cursor.left
           });
         }

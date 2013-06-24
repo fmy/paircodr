@@ -71,16 +71,13 @@ class Editor
       .append("&nbsp;")
       .css
         position: "absolute"
-        top: data.cursor.top - 4
+        top: data.cursor.top
         left: data.cursor.left
         height: 16
       $(".CodeMirror-secondarycursor").after cursor
 
     @socket.on "code:saved", (data) =>
       $(".code_title").text data.title
-      @edit_flag = false
-      @cm.setValue data.body
-      @edit_flag = true
       $.pnotify 
         title: false
         text: "Save."
@@ -122,7 +119,7 @@ class Editor
         $(".CodeMirror-secondarycursor").after cursor
       else
         $(".cursor-#{data.socket_id}").css
-          top: data.cursor.top - 4
+          top: data.cursor.top
           left: data.cursor.left
 
 
