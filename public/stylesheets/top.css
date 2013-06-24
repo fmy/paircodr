@@ -67,3 +67,6 @@ a {
   left: 20px;
   right: 20px;
 }
+.editor .codemirror {
+  display: none;
+}
