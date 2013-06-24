@@ -1,0 +1,9 @@
+.code_title= code.title
+%form.code_title_form
+  %input.code_title_input
+.editor
+  %textarea.codemirror{"data-id": code.id}= code.body
+
+%script{src:"/javascripts/libs/codemirror.min.js"}
+%script{src:"/socket.io/socket.io.js"}
+%script{src: "/javascripts/cumulative/script.js"}

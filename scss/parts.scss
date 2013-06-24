@@ -1,0 +1,17 @@
+.btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #eee;
+  color: #000;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: .8;
+}
+
+.btn-large {
+  font-size: 24px;
+  padding: 12px 24px;
+}
