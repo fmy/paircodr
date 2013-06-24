@@ -107,7 +107,7 @@
           height: "",
           delay: 1000
         });
-        return $("cursor-" + data.socket_id).remove();
+        return $(".cursor-" + data.socket_id).remove();
       });
       this.socket.on("code:saved", function(data) {
         $(".code_title").text(data.title);

@@ -85,7 +85,7 @@ class Editor
         text: "#{data.user} exits."
         height: ""
         delay: 1000
-      $("cursor-#{data.socket_id}").remove()
+      $(".cursor-#{data.socket_id}").remove()
 
     @socket.on "code:saved", (data) =>
       $(".code_title").text data.title
