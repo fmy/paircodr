@@ -79,7 +79,7 @@ class Editor
         height: 16
       $(".CodeMirror-secondarycursor").after cursor
 
-    @socket.on "user:exit", ->
+    @socket.on "user:exit", (data) ->
       $.pnotify
         title: false
         text: "#{data.user} exits."

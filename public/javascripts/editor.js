@@ -100,7 +100,7 @@
         });
         return $(".CodeMirror-secondarycursor").after(cursor);
       });
-      this.socket.on("user:exit", function() {
+      this.socket.on("user:exit", function(data) {
         $.pnotify({
           title: false,
           text: "" + data.user + " exits.",
