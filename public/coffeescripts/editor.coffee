@@ -59,7 +59,6 @@ class Editor
 
 
     @socket.on "code:joined", (data) =>
-      console.log data
       @edit_flag = false
       @cm.setValue data
       @edit_flag = true
@@ -93,7 +92,6 @@ class Editor
         @socket.emit "code:edit", {change: change, body: @body}
 
     @socket.on "code:edited", (change) =>
-      console.log change
       @edit_flag = false
       @cm.replaceRange change.text, change.from, change.to
       if change.next
@@ -139,7 +137,6 @@ class Editor
     @marked_body = @body
 
   save: =>
-    console.log "save"
     @update()
     @socket.emit "code:save",
       id: @id
@@ -172,28 +169,27 @@ class Editor
 
 editor = new Editor $(".codemirror")
 
+title_flag = false
+
 $(document).on "click", ".code_title", ->
+  title_flag = true
   div = $(this)
   input = $(".code_title_input")
 
   title = div.text()
   input.val title
-
   div.hide()
-  input.show()
-  input.focus()
+  input.show().focus()
   input[0].setSelectionRange(title.length, title.length);
 
 .on "submit blur", ".code_title_form", (e) ->
-  e.preventDefault()
-  div = $(".code_title")
-  input = $(".code_title_input")
-
-  title = input.val()
-  div.text title
-
-  input.hide()
-  div.show()
-
-  editor.save()
-
+  if title_flag
+    e.preventDefault()
+    div = $(".code_title")
+    input = $(".code_title_input")
+    title = input.val()
+    div.text title
+    input.hide()
+    div.show()
+    editor.save()
+    title_flag = false
