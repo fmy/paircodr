@@ -6,11 +6,11 @@
     "start": "node app"
   },
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": "8.x",
+    "npm": "3.x"
   },
   "dependencies": {
-    "express": "3.0.0rc4",
+    "express": "~3.0.0",
     "jade": "*",
     "hamljs": "*",
     "consolidate": "*",
