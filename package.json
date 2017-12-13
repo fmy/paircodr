@@ -17,7 +17,7 @@
     "coffee-script": "*",
     "the_time.js": "*",
     "uglify-js": "*",
-    "socket.io": "*",
+    "socket.io": "~0.9.0",
     "express-partials": "*",
     "mongoose": "*",
     "forever": "*"
